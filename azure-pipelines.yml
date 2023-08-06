@@ -26,10 +26,12 @@ steps:
     script: |
       param($arg1, $arg2)
       
-      Write-Host "Hello World2"
+      echo $arg1
+      echo $arg2
     pwsh: true
     arguments: 'arg1 arg2'
-
+  condition: always()
+  
 # https://learn.microsoft.com/azure/devops/pipelines/tasks/reference/azure-powershell-v5?view=azure-pipelines&WT.mc_id=DOP-MVP-5001655
 - task: AzurePowerShell@5
   inputs:
@@ -37,5 +39,9 @@ steps:
     ScriptType: 'InlineScript'
     Inline: |
       param($arg1, $arg2)
+      
+      echo $arg1
+      echo $arg2
     azurePowerShellVersion: 'LatestVersion'
     pwsh: true
+  condition: always()
