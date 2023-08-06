@@ -14,9 +14,11 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       param($arg1, $arg2)
-      
+
       echo $arg1
       echo $arg2
+
+      dir variable:
     arguments: 'arg1 arg2'
 
 # https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/powershell-v2?view=azure-pipelines&WT.mc_id=DOP-MVP-5001655
@@ -25,12 +27,12 @@ steps:
     targetType: 'inline'
     script: |
       #param($arg1, $arg2)
-      
-      echo $args
+
+      dir variable:
     pwsh: true
     arguments: 'arg1 arg2'
   condition: always()
-  
+
 # https://learn.microsoft.com/azure/devops/pipelines/tasks/reference/azure-powershell-v5?view=azure-pipelines&WT.mc_id=DOP-MVP-5001655
 - task: AzurePowerShell@5
   inputs:
@@ -38,8 +40,8 @@ steps:
     ScriptType: 'InlineScript'
     Inline: |
       #param($arg1, $arg2)
-      
-      echo $args
+
+      dir variable:
 
     azurePowerShellVersion: 'LatestVersion'
     pwsh: true
