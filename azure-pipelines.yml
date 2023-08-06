@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'MSDN(b4b2e7e9-66e7-46b5-a56b-cce2b50011d4)'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      param($arg1, $arg2)
+      
+      echo $arg1
+      echo $arg2
+    arguments: 'arg1 arg2'
+
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'MSDN(b4b2e7e9-66e7-46b5-a56b-cce2b50011d4)'
+    ScriptType: 'InlineScript'
+    Inline: 'param($arg1, $arg2)'
+    azurePowerShellVersion: 'LatestVersion'
+    pwsh: true
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      param($arg1, $arg2)
+      
+      Write-Host "Hello World2"
+    pwsh: true
