@@ -24,10 +24,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      param($arg1, $arg2)
+      #param($arg1, $arg2)
       
-      echo $arg1
-      echo $arg2
+      echo $args
     pwsh: true
     arguments: 'arg1 arg2'
   condition: always()
@@ -38,10 +37,10 @@ steps:
     azureSubscription: 'MSDN(b4b2e7e9-66e7-46b5-a56b-cce2b50011d4)'
     ScriptType: 'InlineScript'
     Inline: |
-      param($arg1, $arg2)
+      #param($arg1, $arg2)
       
-      echo $arg1
-      echo $arg2
+      echo $args
+
     azurePowerShellVersion: 'LatestVersion'
     pwsh: true
   condition: always()
