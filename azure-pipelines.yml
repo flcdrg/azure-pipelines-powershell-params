@@ -14,13 +14,14 @@ steps:
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      param($arg1, $arg2)
+      param($arg1, $arg2, $arg3)
 
       echo $arg1
       echo $arg2
+      echo $arg3
 
       dir variable:
-    arguments: 'arg1 arg2'
+    arguments: 'arg1 arg2 @{ "Thing" = "Stuff"}'
 
 - task: AzureCLI@2
   displayName: 'AzureCLI@2 with named arguments'
