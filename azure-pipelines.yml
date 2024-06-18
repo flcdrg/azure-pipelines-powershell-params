@@ -30,13 +30,15 @@ steps:
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      param($arg1, $arg2)
+      param($arg1, [parameter(Mandatory = $true)][string]$arg2)
 
       echo $arg1
       echo $arg2
 
       dir variable:
-    arguments: '-arg1 "First Arg Value" -arg2 "Second Arg Value"'
+    arguments: |
+      -arg1 "First Arg Value" 
+      -arg2 "Second Arg Value"
 
 # https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/powershell-v2?view=azure-pipelines&WT.mc_id=DOP-MVP-5001655
 - task: PowerShell@2
