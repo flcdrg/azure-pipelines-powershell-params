@@ -8,6 +8,7 @@ steps:
 
 # https://learn.microsoft.com/azure/devops/pipelines/tasks/reference/azure-cli-v2?view=azure-pipelines&WT.mc_id=DOP-MVP-5001655
 - task: AzureCLI@2
+  displayName: 'AzureCLI@2'
   inputs:
     azureSubscription: 'MSDN(b4b2e7e9-66e7-46b5-a56b-cce2b50011d4)'
     scriptType: 'pscore'
@@ -21,8 +22,24 @@ steps:
       dir variable:
     arguments: 'arg1 arg2'
 
+- task: AzureCLI@2
+  displayName: 'AzureCLI@2 with named arguments'
+  inputs:
+    azureSubscription: 'MSDN(b4b2e7e9-66e7-46b5-a56b-cce2b50011d4)'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      param($arg1, $arg2)
+
+      echo $arg1
+      echo $arg2
+
+      dir variable:
+    arguments: '-arg1 "First Arg Value" -arg2 "Second Arg Value"'
+
 # https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/powershell-v2?view=azure-pipelines&WT.mc_id=DOP-MVP-5001655
 - task: PowerShell@2
+  displayName: 'PowerShell@2'
   inputs:
     targetType: 'inline'
     script: |
@@ -35,6 +52,7 @@ steps:
 
 # https://learn.microsoft.com/azure/devops/pipelines/tasks/reference/azure-powershell-v5?view=azure-pipelines&WT.mc_id=DOP-MVP-5001655
 - task: AzurePowerShell@5
+  displayName: 'AzurePowerShell@5'
   inputs:
     azureSubscription: 'MSDN(b4b2e7e9-66e7-46b5-a56b-cce2b50011d4)'
     ScriptType: 'InlineScript'
