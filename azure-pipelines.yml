@@ -30,7 +30,8 @@ steps:
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      param($arg1, [parameter(Mandatory = $true)][string]$arg2)
+      param([string]$arg1, [string]$arg2)
+      # FYI [parameter(Mandatory = $true)] doesn't work
 
       echo $arg1
       echo $arg2
